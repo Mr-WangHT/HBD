@@ -120,14 +120,14 @@ function startGallery() {
   galleryTimer = window.setInterval(() => {
     const roll = Math.random();
 
-    if (roll > 0.76) {
+    if (roll > 0.72) {
       addDog();
-    } else if (roll > 0.58) {
+    } else if (roll > 0.42) {
       addHeart();
     } else {
       addPhoto();
     }
-  }, 1150);
+  }, 1600);
 }
 
 function stopGalleryExperience({ keepBackground = false } = {}) {
@@ -175,7 +175,7 @@ function addPhoto() {
     img.src = getAssetPath(fileName, localPhotoBase);
   }, { once: true });
   photoIndex += 1;
-  placeFloating(img);
+  placePhotoAroundEdges(img);
 }
 
 function addDog() {
@@ -197,6 +197,36 @@ function placeFloating(element) {
   const left = 5 + Math.random() * 70;
   const top = 5 + Math.random() * 68;
   const angle = -18 + Math.random() * 36;
+
+  element.style.left = `${left}%`;
+  element.style.top = `${top}%`;
+  element.style.setProperty("--angle", `${angle}deg`);
+  stage.appendChild(element);
+
+  window.setTimeout(() => {
+    element.remove();
+  }, 9200);
+}
+
+function placePhotoAroundEdges(element) {
+  const edge = Math.floor(Math.random() * 4);
+  const angle = -16 + Math.random() * 32;
+  let left;
+  let top;
+
+  if (edge === 0) {
+    left = 6 + Math.random() * 68;
+    top = 4 + Math.random() * 14;
+  } else if (edge === 1) {
+    left = 6 + Math.random() * 68;
+    top = 70 + Math.random() * 12;
+  } else if (edge === 2) {
+    left = 3 + Math.random() * 10;
+    top = 14 + Math.random() * 58;
+  } else {
+    left = 74 + Math.random() * 10;
+    top = 14 + Math.random() * 58;
+  }
 
   element.style.left = `${left}%`;
   element.style.top = `${top}%`;

@@ -395,11 +395,11 @@ input {
 }
 
 .floating-photo {
-  width: clamp(104px, 34vw, 154px);
+  width: clamp(70px, 23vw, 103px);
   aspect-ratio: 3 / 4;
   object-fit: cover;
-  border: 6px solid #fff;
-  border-bottom-width: 18px;
+  border: 4px solid #fff;
+  border-bottom-width: 12px;
   border-radius: 5px;
   box-shadow: 0 12px 24px rgba(87, 50, 55, 0.2);
 }
