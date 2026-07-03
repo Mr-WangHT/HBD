@@ -1,0 +1,5 @@
+assets/images/
+assets/images-compressed/
+assets/fonts/*.ttf
+assets/fonts/*.otf
+tools/

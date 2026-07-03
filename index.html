@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>给你的生日信</title>
+    <link rel="stylesheet" href="./css/style.css">
+  </head>
+  <body>
+    <main class="app" aria-live="polite">
+      <section class="screen cover-screen is-active" data-screen="cover">
+        <img class="corner-dog top-left" src="./assets/dog/page1/072-线条小狗动态表情包.gif" alt="">
+        <img class="corner-dog top-right" src="./assets/dog/page1/074-线条小狗动态表情包.gif" alt="">
+        <img class="corner-dog bottom-left" src="./assets/dog/page1/181-线条小狗动态表情包.gif" alt="">
+        <img class="corner-dog bottom-right" src="./assets/dog/page1/186-线条小狗动态表情包.gif" alt="">
+
+        <div class="envelope" aria-label="一封生日信">
+          <div class="envelope-flap"></div>
+          <div class="envelope-body">
+            <p class="stamp-text">To my favorite girl</p>
+            <h1>一封生日信</h1>
+            <p>给今天最可爱的你</p>
+          </div>
+          <button class="seal-button" type="button" data-open-question aria-label="点击印泥打开问题">
+            <span></span>
+          </button>
+        </div>
+
+        <form class="question-box" data-question-form hidden>
+          <label for="answer">你是王昊天的什么人？</label>
+          <div class="answer-row">
+            <input id="answer" name="answer" type="text" autocomplete="off" placeholder="请输入答案">
+            <button type="submit">打开</button>
+          </div>
+          <p class="hint" data-hint>提示：答案藏在你们之间的小称呼里。</p>
+        </form>
+      </section>
+
+      <section class="screen letter-screen" data-screen="letter">
+        <article class="letter-paper">
+          <p class="letter-date">今天，是只属于你的日子</p>
+          <h2>生日快乐，我最喜欢的你</h2>
+          <div class="letter-content">
+            <p>宝宝，生日快乐。</p>
+            <p>希望你今天醒来的第一秒，就能感觉到自己被认真地爱着。愿你这一岁有很多很多开心，有很多很多好运，也有很多很多不用逞强的瞬间。</p>
+            <p>我想把所有温柔的小事都攒起来送给你：一朵花，一阵风，一首歌，还有每一次见到你时心里偷偷亮起来的那一下。</p>
+            <p>以后也想陪你过很多个生日，陪你吃想吃的东西，去想去的地方，把普通日子也过成闪闪发光的回忆。</p>
+            <p>你永远可以做小朋友，也永远可以被我偏心。</p>
+          </div>
+          <p class="signature">最爱你的哥哥</p>
+          <button class="album-button" type="button" data-go-gallery aria-label="打开相册">
+            <span class="album-icon"></span>
+          </button>
+        </article>
+      </section>
+
+      <section class="screen gallery-screen" data-screen="gallery">
+        <div class="gallery-stage" data-gallery-stage>
+          <button class="speaker-button" type="button" data-speaker-toggle aria-label="关闭声音" aria-pressed="true">
+            <img src="./assets/icon/扬声器音波_1783066880.svg" alt="">
+          </button>
+          <button class="back-envelope-button" type="button" data-back-cover aria-label="回到第一封信">
+            <img src="./assets/icon/信封_1783066909.svg" alt="">
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <script src="./js/main.js"></script>
+  </body>
+</html>
