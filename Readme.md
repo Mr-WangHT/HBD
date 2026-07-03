@@ -104,3 +104,10 @@ assets/fonts/birthday-hand-subset.woff2
 ```bash
 python tools/subset_font.py
 ```
+
+
+## 信的内容
+```text
+给我最爱的宝宝：
+    
+```

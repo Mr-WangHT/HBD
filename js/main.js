@@ -1,7 +1,6 @@
 const screens = {
   cover: document.querySelector('[data-screen="cover"]'),
-  letter: document.querySelector('[data-screen="letter"]'),
-  gallery: document.querySelector('[data-screen="gallery"]')
+  letter: document.querySelector('[data-screen="letter"]')
 };
 
 const validAnswers = ["宝宝", "妹妹", "老婆"];
@@ -91,18 +90,14 @@ questionForm.addEventListener("submit", (event) => {
 
   if (validAnswers.includes(answer)) {
     showScreen("letter");
+    startGallery();
+    startBackgroundMusic();
+    startVoiceMusic();
     return;
   }
 
   hint.textContent = "再想想哦，只能是宝宝、妹妹、老婆。";
   answerInput.select();
-});
-
-document.querySelector("[data-go-gallery]").addEventListener("click", () => {
-  showScreen("gallery");
-  startGallery();
-  startBackgroundMusic();
-  startVoiceMusic();
 });
 
 speakerButton.addEventListener("click", () => {
@@ -111,8 +106,8 @@ speakerButton.addEventListener("click", () => {
 });
 
 backCoverButton.addEventListener("click", () => {
-  stopGalleryExperience({ keepBackground: true });
-  showScreen("cover");
+  stopGalleryExperience();
+  resetCover();
 });
 
 function startGallery() {
@@ -154,6 +149,20 @@ function stopGalleryExperience({ keepBackground = false } = {}) {
   stage.querySelectorAll(".floating-photo, .floating-dog, .floating-heart").forEach((element) => {
     element.remove();
   });
+}
+
+function resetCover() {
+  photoIndex = 0;
+  dogIndex = 0;
+  voiceIndex = 0;
+  questionForm.hidden = true;
+  questionForm.reset();
+  hint.textContent = "提示：答案藏在你们之间的小称呼里。";
+  speakerButton.classList.remove("is-muted", "needs-tap");
+  speakerButton.setAttribute("aria-pressed", "true");
+  speakerButton.setAttribute("aria-label", "关闭声音");
+  isMuted = false;
+  showScreen("cover");
 }
 
 function addPhoto() {
