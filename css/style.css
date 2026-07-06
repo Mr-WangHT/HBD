@@ -97,72 +97,131 @@ input {
 .envelope {
   position: relative;
   z-index: 2;
+  isolation: isolate;
   width: min(330px, 84vw);
-  height: 224px;
+  height: 238px;
   filter: drop-shadow(0 22px 38px rgba(137, 68, 76, 0.22));
+
+  /* 信封主体和盖子共用的边框颜色 */
+  --envelope-border: #dca6ad;
 }
 
+/* 信封底层 */
+.envelope-body {
+  position: absolute;
+  inset: 0 0 53px;
+  z-index: auto;
+  overflow: hidden;
+
+  padding: 28px 20px 14px;
+  border: 2px solid var(--envelope-border);
+  border-radius: 10px 10px 10px 10px;
+  background: #fff5df;
+  text-align: center;
+}
+
+/* 底部向上的折面 */
+.envelope-body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
+  background: #f4e1bf;
+  clip-path: polygon(0 100%, 50% 42%, 100% 100%);
+}
+
+
+/* 文字在折面和翻盖上方 */
+.envelope-body > * {
+  position: relative;
+  z-index: 4;
+}
+
+/* 上翻盖 */
 .envelope-flap {
   position: absolute;
   left: 0;
   right: 0;
   top: 0;
-  height: 118px;
-  clip-path: polygon(0 0, 50% 72%, 100% 0, 100% 100%, 0 100%);
-  background: #ffd4dc;
-  border: 2px solid rgba(156, 76, 82, 0.2);
-  border-bottom: 0;
-  border-radius: 8px 8px 0 0;
+  z-index: 3;
+
+  height: 146px;
+  background: var(--envelope-border);
+
+  border-radius: 10px 10px 0 0; /* 新增 */
+  overflow: hidden;             /* 新增 */
+
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% 30%,
+    50% 100%,
+    0 30%
+  );
 }
 
-.envelope-body {
+/* 翻盖内部粉色区域，外层露出统一边框 */
+.envelope-flap::before {
+  content: "";
   position: absolute;
-  left: 0;
-  right: 0;
-  top: 88px;
-  bottom: 0;
-  padding: 42px 26px 22px;
-  border: 2px solid rgba(156, 76, 82, 0.2);
-  border-radius: 0 0 8px 8px;
-  background:
-    linear-gradient(35deg, transparent 48%, rgba(255, 255, 255, 0.42) 49% 51%, transparent 52%),
-    #fff5df;
-  text-align: center;
+  inset: 2px;
+
+  background: #ffd4dc;
+
+  border-radius: 8px 8px 0 0; /* 新增，略小于外层圆角 */
+
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% 30%,
+    50% 100%,
+    0 30%
+  );
+}
+
+/* 火漆印 */
+.seal-button {
+  position: absolute;
+  left: 50%;
+  top: 140px;
+  z-index: 5;
+
+  width: 54px;
+  height: 54px;
+  border: 0;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+
+  background: #c9333e;
+  box-shadow:
+    inset 0 -6px 0 rgba(86, 0, 11, 0.16),
+    0 8px 16px rgba(142, 36, 47, 0.25);
+
+  cursor: pointer;
 }
 
 .stamp-text {
-  margin: 0 0 8px;
+  margin: 0 0 6px;
   color: #ac5656;
   font-size: 15px;
   font-weight: 700;
+  line-height: 1.1;
 }
 
 .envelope h1 {
-  margin: 0 0 10px;
-  font-size: 40px;
+  margin: 0 0 7px;
+  font-size: 35px;
   font-weight: 700;
+  line-height: 1.1;
   letter-spacing: 0;
 }
 
 .envelope p {
   margin: 0;
   color: var(--muted);
-  font-size: 18px;
-}
-
-.seal-button {
-  position: absolute;
-  left: 50%;
-  top: 88px;
-  z-index: 3;
-  width: 54px;
-  height: 54px;
-  border: 0;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  background: #c9333e;
-  box-shadow: inset 0 -6px 0 rgba(86, 0, 11, 0.16), 0 8px 16px rgba(142, 36, 47, 0.25);
-  cursor: pointer;
+  font-size: 17px;
+  line-height: 1.2;
 }
 
 .seal-button span,
@@ -177,7 +236,7 @@ input {
   left: 18px;
   top: 15px;
   width: 19px;
-  height: 18px;
+  height: 19px;
   transform: rotate(-45deg);
 }
 
